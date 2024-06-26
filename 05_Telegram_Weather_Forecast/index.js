@@ -10,7 +10,6 @@ const bot = new TelegramBot(token, { polling: true });
 const initialKeyboard = {
     keyboard: [
         [{ text: 'Погода' }],
-        [{ text: 'Курс валют' }]
     ],
     resize_keyboard: true
 };
@@ -24,13 +23,6 @@ const weatherKeyboard = {
     one_time_keyboard: true
 };
 
-const walletKeyboard = {
-    keyboard: [
-        [{ text: 'USD' }, { text: 'EUR' }],
-        [{ text: 'Попереднє меню' }]
-    ],
-    one_time_keyboard: true
-};
 let currentCity = '';
 
 async function getCityCoordinates(cityName, apiKey) {
@@ -74,28 +66,6 @@ async function getWeatherForecastByCoordinates(lat, lon, apiKey) {
     }
 }
 
-async function getCurrencyUSD() {
-    try {
-        const response = await axios.get('https://api.monobank.ua/bank/currency');
-        const filteredResponse = response.data.filter(obj => obj.currencyCodeA === 840 || obj.currencyCodeB === 840);
-        return filteredResponse;
-    } catch (error) {
-        console.error('An error occurred:', error.message);
-        throw error;
-    }
-}
-
-async function getCurrencyEUR() {
-    try {
-        const response = await axios.get('https://api.monobank.ua/bank/currency');
-        const filteredResponse = response.data.filter(obj => obj.currencyCodeA === 978 || obj.currencyCodeB === 978);
-        return filteredResponse;
-    } catch (error) {
-        console.error('An error occurred:', error.message);
-        throw error;
-    }
-}
-
 bot.onText(/\/start/, (msg) => {
     const chatId = msg.chat.id;
     bot.sendMessage(chatId, "Привет! Нажмите кнопку 'Погода' или 'Курс валют' для начала.", {
@@ -110,45 +80,6 @@ bot.onText(/\/setcity (.+)/, (msg, match) => {
 
 bot.on('message', async (msg) => {
     const chatId = msg.chat.id;
-
-    if (msg.text === 'Курс валют') {
-        bot.sendMessage(chatId, 'Выберите опцию:', {
-            reply_markup: walletKeyboard
-        });
-
-    } else if (msg.text === 'USD') {
-        try {
-            const currencyRates = await getCurrencyUSD();
-
-            let message = `Курсы валют (USD):\n`;
-            currencyRates.forEach(rate => {
-                if (rate.currencyCodeA === 840 || rate.currencyCodeB === 840) {
-                    message += `${rate.currencyCodeA === 840 ? rate.currencyCodeB : rate.currencyCodeA}: ${rate.rateBuy} (Покупка), ${rate.rateSell} (Продажа)\n`;
-                }
-            });
-
-            bot.sendMessage(chatId, message);
-        } catch (error) {
-            console.error('Ошибка при получении курсов валют:', error.message);
-            bot.sendMessage(chatId, 'Произошла ошибка при получении курсов валют. Пожалуйста, попробуйте позже.');
-        }
-    } else if (msg.text === 'EUR') {
-        try {
-            const currencyRates = await getCurrencyEUR();
-
-            let message = `Курсы валют (EUR):\n`;
-            currencyRates.forEach(rate => {
-                if (rate.currencyCodeA === 978 || rate.currencyCodeB === 978) {
-                    message += `${rate.currencyCodeA === 978 ? rate.currencyCodeB : rate.currencyCodeA}: ${rate.rateBuy} (Покупка), ${rate.rateSell} (Продажа)\n`;
-                }
-            });
-
-            bot.sendMessage(chatId, message);
-        } catch (error) {
-            console.error('Ошибка при получении курсов валют:', error.message);
-            bot.sendMessage(chatId, 'Произошла ошибка при получении курсов валют. Пожалуйста, попробуйте позже.');
-        }
-    }
     if (msg.text === 'Погода') {
         bot.sendMessage(chatId, 'Выберите опцию:', {
             reply_markup: weatherKeyboard
