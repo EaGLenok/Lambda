@@ -1,0 +1,53 @@
+.why_tinvio_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 2000px;
+  height: 1000px;
+
+  .why_tinvio_block {
+    margin-top: -280px;
+    width: 2050px;
+    height: 600px;
+    background-color: rgba(54, 54, 54, 255);
+    transform: skewY(-8deg);
+    transform-origin: right bottom;
+    border-radius: 50px 0px 0px 50px;
+
+    .why_tinvio_content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      transform: skewY(8deg);
+      .why_tinvio_slider {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 100px;
+        border-radius: 32px;
+        width: 850px;
+        height: 350.45px;
+        background-color: white;
+        .slider_desc_container {
+          margin: 5px;
+          border-radius: 32px;
+          width: 89%;
+          height: auto;
+          background-color: rgba(241, 241, 241, 1);
+        }
+        .slider_image_container {
+          width: auto;
+          height: auto;
+          position: absolute;
+        }
+        .slider_company_container {
+          width: 300px;
+          height: 200px;
+        }
+      }
+    }
+  }
+}

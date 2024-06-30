@@ -1,0 +1,98 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 98vh;
+}
+
+.signIn_container {
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  box-shadow: 0px 0px 29px 4px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-direction: row;
+  width: 900px;
+  height: 500px;
+  align-items: center;
+}
+
+.signIn_block {
+  height: 100%;
+  width: 450px;
+}
+
+.switchCase_login_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  width: 450px;
+  background: linear-gradient(to bottom right, #ff416c, #ff4b2b);
+}
+
+.switchCase_login_container h2,
+p {
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.login_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.signUp_btn {
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  color: white;
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid white;
+}
+
+.form_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form_container input {
+  outline: none;
+  margin: 20px 0;
+  padding: 0px 0px 0px 15px;
+  width: 350px;
+  height: 45px;
+  border-radius: 30px;
+  border: none;
+  background-color: #f2f2f2;
+}
+
+.form_container input::placeholder {
+  font-family: Arial, sans-serif;
+  color: #c2c2c2;
+}
+
+.form_container .input_email,
+.input_password {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+.signIn_btn {
+  margin: 10px 0;
+  padding: 0px 0px 0px 15px;
+  color: white;
+  width: 350px;
+  height: 45px;
+  border-radius: 30px;
+  background: linear-gradient(to bottom right, #ff416c, #ff4b2b);
+  border: none;
+}
